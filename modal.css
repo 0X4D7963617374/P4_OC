@@ -517,6 +517,14 @@ footer {
   }
 }
 
+.showmessage
+{
+  padding-top: 4px;
+  color: red;
+  font-size: 14px;
+  display: none;
+}
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -526,4 +534,6 @@ footer {
     opacity: 1;
   }
 }
+
+
 

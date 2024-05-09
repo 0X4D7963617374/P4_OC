@@ -5,46 +5,7 @@ const formData = document.querySelectorAll(".formData");
 
 const my_close = document.querySelector(".close");
 
-
-function first()
-{
-  return true;
-}
-
-function last()
-{
-  return true;
-}
-
-function email() 
-{
-  return true;
-}
-
-function quantity() 
-{
-  return true;
-}
-
-function birthdate()
-{
-  return true;
-}
-
-function localisation()
-{
-  return true;
-}
-
-function check()
-{
-  return true;
-}
-
-function tout_ok()
-{
-
-}
+const displayStyles = ['block', 'none'];
 
 const validators = {
   first: first,
@@ -56,10 +17,73 @@ const validators = {
   quantity: quantity
 };
 
-/*
-// en fonction du choix de mon mentor
-function validate()
+
+function init()
 {
+  if (modalBtn)
+    modalBtn.addEventListener("click", launchModal);
+  if (my_close)
+    my_close.addEventListener("click", fonct_close);
+}
+
+init();
+
+
+function setErrorDisplay(element, displayStyle)
+{
+  const errorDiv = element.parentElement.querySelector(".showmessage");
+
+  errorDiv.style.display = displayStyle;
+  return displayStyle;
+}
+
+
+function first(element)
+{
+  const isValid = element.value.length >= 3;
+
+  return setErrorDisplay(element, displayStyles[+isValid]);
+}
+
+function last(element)
+{
+  return true;
+}
+
+function email(element) 
+{
+  return true;
+}
+
+function quantity(element)
+{
+  return true;
+}
+
+function birthdate(element)
+{
+  return true;
+}
+
+function localisation(element)
+{
+  return true;
+}
+
+function check(element)
+{
+  return true;
+}
+
+function tout_ok()
+{
+  fonct_close();
+}
+
+// en fonction du choix de mon mentor recursif ou pas
+/*function validate(event)
+{
+  event.preventDefault();
   if (validateRecursive(0, true))
     tout_ok();
 }
@@ -70,31 +94,28 @@ function validateRecursive(index, flag_valid)
     return flag_valid;
 
   const element = formData[index].querySelector('input');
-  return validateRecursive(++index, flag_valid && (!element || !validators[element.name] || validators[element.name]()));
+  return validateRecursive(++index, (!element || !validators[element.name] || validators[element.name](element)) && flag_valid);
 }*/
 
-
-function validate()
+function validate(event)
 {
   let index;
   let element;
   let flag_valid;
 
+  event.preventDefault();
   flag_valid = true;
   index = 0;
   while (index < formData.length)
   {
     element = formData[index++].querySelector('input');
     if (element && validators[element.name])
-      flag_valid = flag_valid && validators[element.name]();
+      flag_valid = validators[element.name](element) && flag_valid;
   }
   if (flag_valid)
     tout_ok();
 }
 
-
-
-// launch modal form
 function launchModal()
 {
   modalbg.style.display = "block";
@@ -117,12 +138,4 @@ function editNav()
   }
 }
 
-function init()
-{
-  if (modalBtn)
-    modalBtn.addEventListener("click", launchModal);
-  if (my_close)
-    my_close.addEventListener("click", fonct_close);
-}
 
-init();
