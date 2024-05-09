@@ -54,7 +54,10 @@ function last(element)
 
 function email(element) 
 {
-  return true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/;
+  const isValid = emailRegex.test(element.value);
+
+  return setErrorDisplay(element, isValid);
 }
 
 function quantity(element)
