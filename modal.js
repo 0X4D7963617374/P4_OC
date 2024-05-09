@@ -70,7 +70,22 @@ function quantity(element)
 
 function birthdate(element)
 {
-  return true;
+  const birthdateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  const today = new Date();
+  let isValid = birthdateRegex.test(element.value);
+  let day;
+  let month;
+  let year;
+  let date;
+
+  if (isValid)
+  {
+    [day, month, year] = element.value.split('/');
+    date = new Date(`${year}-${month}-${day}`);
+    isValid = date <= today;
+  }
+
+  return setErrorDisplay(element, isValid);
 }
 
 function localisation(element)
