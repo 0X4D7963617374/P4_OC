@@ -90,7 +90,10 @@ function birthdate(element)
 
 function localisation(element)
 {
-  return true;
+  const tab_localisation = document.getElementsByName(element.name);
+  const index = Array.from(tab_localisation).findIndex((loc) => loc.checked);
+
+  return setErrorDisplay(element, index !== -1);
 }
 
 function check(element)
