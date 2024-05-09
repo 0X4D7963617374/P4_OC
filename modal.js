@@ -1,13 +1,17 @@
 // DOM Elements
 const modalbg = document.querySelector(".bground");
+const modalgood = document.querySelector(".popup");
+
 const modalBtn = document.querySelector(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 const my_close = document.querySelector(".close");
+const my_close_popup = document.querySelectorAll('.close-popup');
 
 const displayStyles = ['block', 'none'];
 
-const validators = {
+const validators =
+{
   first: first,
   last: last,
   email: email,
@@ -20,10 +24,17 @@ const validators = {
 
 function init()
 {
+  let index = 0;
+
   if (modalBtn)
     modalBtn.addEventListener("click", launchModal);
   if (my_close)
     my_close.addEventListener("click", fonct_close);
+  while (index < my_close_popup.length)
+  {
+    my_close_popup[index].addEventListener("click", fonct_close_popup);
+    index++;
+  }
 }
 
 init();
@@ -107,6 +118,7 @@ function check(element)
 function tout_ok()
 {
   fonct_close();
+  modalgood.style.display = 'block';
 }
 
 // en fonction du choix de mon mentor recursif ou pas
@@ -143,6 +155,7 @@ function validate(event)
   }
   if (flag_valid)
     tout_ok();
+
 }
 
 function launchModal()
@@ -152,9 +165,8 @@ function launchModal()
   let inputs;
   let j;
   let input;
-  
-  modalbg.style.display = "block";
 
+  modalbg.style.display = "block";
   while (i < formData.length)
   {
     form = formData[i++];
@@ -169,6 +181,12 @@ function launchModal()
       setErrorDisplay(input, true);
     }
   }
+}
+
+function fonct_close_popup()
+{
+  modalgood.style.display = "none";
+  modalbg.style.display = "none";
 }
 
 function fonct_close()
