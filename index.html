@@ -68,10 +68,8 @@
               <div
                 class="formData">
                 <label>Prénom</label><br>
-                <!-- required="required" -->
                 <input
                   class="text-control"
-                  type="text"
                   id="first"
                   name="first"
                 /><br>
@@ -82,7 +80,6 @@
                 <label>Nom</label><br>
                 <input
                   class="text-control"
-                  type="text"
                   id="last"
                   name="last"
                 /><br>
@@ -93,7 +90,6 @@
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
-                  type="email"
                   id="email"
                   name="email"
                 /><br>
@@ -112,7 +108,8 @@
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <div class="showmessage"> Veuillez saisir une quantité valide (nombre entier).</div>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div

@@ -62,7 +62,10 @@ function email(element)
 
 function quantity(element)
 {
-  return true;
+  const quantityRegex = /^[0-9]+$/;
+  const isValid = quantityRegex.test(element.value);
+
+  return setErrorDisplay(element, isValid);
 }
 
 function birthdate(element)
