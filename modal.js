@@ -29,12 +29,12 @@ function init()
 init();
 
 
-function setErrorDisplay(element, displayStyle)
+function setErrorDisplay(element, isValid)
 {
   const errorDiv = element.parentElement.querySelector(".showmessage");
 
-  errorDiv.style.display = displayStyle;
-  return displayStyle;
+  errorDiv.style.display = displayStyles[+isValid];
+  return isValid;
 }
 
 
@@ -42,12 +42,14 @@ function first(element)
 {
   const isValid = element.value.length >= 3;
 
-  return setErrorDisplay(element, displayStyles[+isValid]);
+  return setErrorDisplay(element, isValid);
 }
 
 function last(element)
 {
-  return true;
+  const isValid = element.value.length >= 3;
+
+  return setErrorDisplay(element, isValid);
 }
 
 function email(element) 
