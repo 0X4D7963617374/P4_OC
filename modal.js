@@ -98,7 +98,10 @@ function localisation(element)
 
 function check(element)
 {
-  return true;
+  const tab_check = document.getElementsByName(element.name);
+  const index = Array.from(tab_check).findIndex((chk) => chk.checked);
+
+  return setErrorDisplay(element, index === 0);
 }
 
 function tout_ok()
