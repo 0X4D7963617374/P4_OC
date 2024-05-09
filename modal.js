@@ -147,7 +147,28 @@ function validate(event)
 
 function launchModal()
 {
+  let i = 0;
+  let form;
+  let inputs;
+  let j;
+  let input;
+  
   modalbg.style.display = "block";
+
+  while (i < formData.length)
+  {
+    form = formData[i++];
+    inputs = form.querySelectorAll('input');
+    j = 0;
+    while (j < inputs.length)
+    {
+      input = inputs[j++];
+      input.value = '';
+      if (input.type === 'checkbox' || input.type === 'radio')
+        input.checked = false;
+      setErrorDisplay(input, true);
+    }
+  }
 }
 
 function fonct_close()
