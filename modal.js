@@ -2,7 +2,7 @@
 const modalbg = document.querySelector(".bground");
 const modalgood = document.querySelector(".popup");
 
-const modalBtn = document.querySelector(".modal-btn");
+const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 const my_close = document.querySelector(".close");
@@ -26,15 +26,18 @@ function init()
 {
   let index = 0;
 
+
   if (modalBtn)
-    modalBtn.addEventListener("click", launchModal);
+  while (index <modalBtn.length)
+    modalBtn[index++].addEventListener("click",launchModal);
+
+
   if (my_close)
     my_close.addEventListener("click", fonct_close);
+
+  index = 0;
   while (index < my_close_popup.length)
-  {
-    my_close_popup[index].addEventListener("click", fonct_close_popup);
-    index++;
-  }
+    my_close_popup[index++].addEventListener("click", fonct_close_popup);
 }
 
 init();
@@ -74,7 +77,7 @@ function email(element)
 function quantity(element)
 {
   const quantityRegex = /^[0-9]+$/;
-  const isValid = quantityRegex.test(element.value);
+  const isValid = quantityRegex.test(element.value) && element.value < 100;
 
   return setErrorDisplay(element, isValid);
 }
@@ -160,6 +163,7 @@ function validate(event)
 
 function launchModal()
 {
+ 
   let i = 0;
   let form;
   let inputs;
